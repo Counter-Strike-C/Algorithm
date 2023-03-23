@@ -1,0 +1,6 @@
+﻿  Test1.cpp
+D:\C++Repos\Algorithm\Common.h(15,1): warning C4005: 'OVERFLOW': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_math.h(967): message : see previous definition of 'OVERFLOW'
+D:\C++Repos\Algorithm\Test1.cpp(5,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+D:\C++Repos\Algorithm\Test1.cpp(16,20): warning C4018: '<': signed/unsigned mismatch
+  Algorithm.vcxproj -> D:\C++Repos\Algorithm\Debug\Algorithm.exe
