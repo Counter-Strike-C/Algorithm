@@ -1,7 +1,12 @@
 #include "ALG_Recursion.h"
+#include "ALG_DCMethod.h"
+#include "Common.h"
 using namespace std;
 
-void main()
+
+
+//用于测试递归算法
+void test1()
 {
 	BTNode* btree;  //创建btree
 	TElemType a[] = { 1,2,4,5,3,6 };   //先序序列
@@ -26,4 +31,29 @@ void main()
 
 	cout << "n皇后运行结果" << endl;
 	queen(0, 10);
+}
+
+//用于测试分治算法
+void test2()
+{
+	string str = "AACEDGG";
+	char a[8];
+	strncpy_s(a, str.c_str(), sizeof(a)-1);
+	int ans = Inversion(a, sizeof(a)-1);
+	cout <<"逆序数为："<< ans << endl;
+
+	//查找最大和次大的元素
+	int b[] = { 10,5,22,45,102,1,5,58,36,99,12,9 };
+	int max1=0;
+	int max2=0;
+	cout << sizeof(b) / 4 << endl;
+	solve(b, 0, sizeof(b) /4 -1, max1, max2);
+	cout << "最大值：" << max1 << endl;
+	cout << "次大值：" << max2 << endl;
+}
+
+void main()
+{
+	//test1();
+	test2();
 }

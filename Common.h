@@ -5,6 +5,10 @@
 #include<stack>
 #include<algorithm>
 #include<queue>
+#include<string>
+#define MAXN
+#define MAXM
+#define INF 32727
 #define MAXSIZE 100
 const int MAXLEN = 255;
 #define TRUE 1
