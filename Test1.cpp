@@ -1,6 +1,6 @@
 #include "ALG_Recursion.h"
 #include "ALG_DCMethod.h"
-#include "Common.h"
+#include "ALG_BTMethod.h"
 using namespace std;
 
 
@@ -52,8 +52,19 @@ void test2()
 	cout << "次大值：" << max2 << endl;
 }
 
+//测试回溯法部分代码
+void test3()
+{
+	int a[] = { 1,2,3 };
+	int n = 3;
+	int i = 0;
+	int x[3];
+	dfsSubSet(a, n, i, x);
+}
+
 void main()
 {
 	//test1();
-	test2();
+	//test2();
+	test3();
 }

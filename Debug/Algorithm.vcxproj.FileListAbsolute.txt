@@ -1,2 +1,0 @@
-D:\C++Repos\Algorithm\Debug\Algorithm.exe
-D:\C++Repos\Algorithm\Debug\Algorithm.pdb

@@ -1,6 +1,1 @@
-﻿  Test1.cpp
-D:\C++Repos\Algorithm\Common.h(19,1): warning C4005: 'OVERFLOW': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_math.h(967): message : see previous definition of 'OVERFLOW'
-D:\C++Repos\Algorithm\Test1.cpp(21,20): warning C4018: '<': signed/unsigned mismatch
-D:\C++Repos\Algorithm\Test1.cpp(58,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-  Algorithm.vcxproj -> D:\C++Repos\Algorithm\Debug\Algorithm.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(411,5): error MSB8020: The build tools for v143 (Platform Toolset = 'v143') cannot be found. To build using the v143 build tools, please install v143 build tools.  Alternatively, you may upgrade to the current Visual Studio tools by selecting the Project menu or right-click the solution, and then selecting "Retarget solution".

@@ -94,6 +94,20 @@ void solve(int a[], int low, int high, int& max1, int& max2)
 	}
 }
 
+//分出前段
+void prepart(int& s, int& t)
+{
+	s = s;
+	t = (s + t) / 2;
+}
+
+//分出后段
+void postpart(int& s, int& t)
+{
+	t = t;
+	s = (s + t) / 2;
+}
+
 //6、对于一个长度为n的有序序列（假设均为升序序列）a[0..n-1]，
 //处于中间位置的元素称为a的中位数。
 //设计一个算法求给定的两个有序序列的中位数。
@@ -115,19 +129,7 @@ int midium(int a[], int s1, int t1, int b[], int s2, int t2)
 	}
 }
 
-//分出前段
-void prepart(int& s, int& t)
-{
-	s = s;
-	t = (s + t) / 2;
-}
 
-//分出后段
-void postpart(int& s, int& t)
-{
-	t = t;
-	s = (s + t) / 2;
-}
 
 long max3(long a, long b, long c)
 {
@@ -235,7 +237,7 @@ void ChessBoard(int tr, int tc, int dr, int dc, int size)
      （3）循环赛在n-1天之内结束。
  */
 #define MAX 101
-int k;         //求解结果表示
+int kk;         //2^k个选手
 int a[MAX][MAX];     //存放比赛日程表
 void Plan(int k)
 {
