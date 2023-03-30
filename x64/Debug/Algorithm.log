@@ -1,1 +1,10 @@
-﻿  Algorithm.vcxproj -> D:\C++Repos\Algorithm\x64\Debug\Algorithm.exe
+﻿  Test1.cpp
+D:\C++Repos\Algorithm\Common.h(19,1): warning C4005: 'OVERFLOW': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_math.h(967): message : see previous definition of 'OVERFLOW'
+D:\C++Repos\Algorithm\ALG_DCMethod.h(239,1): warning C4005: 'MAX': macro redefinition
+D:\C++Repos\Algorithm\ALG_DCMethod.h(2): message : see previous definition of 'MAX'
+D:\C++Repos\Algorithm\ALG_BTMethod.h(2,1): warning C4005: 'MAX': macro redefinition
+D:\C++Repos\Algorithm\ALG_DCMethod.h(239): message : see previous definition of 'MAX'
+D:\C++Repos\Algorithm\Test1.cpp(93,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+D:\C++Repos\Algorithm\ALG_DCMethod.h(130): warning C4715: 'midium': not all control paths return a value
+  Algorithm.vcxproj -> D:\C++Repos\Algorithm\x64\Debug\Algorithm.exe

@@ -60,6 +60,33 @@ void test3()
 	int i = 0;
 	int x[3];
 	dfsSubSet(a, n, i, x);
+
+
+	int b[9];
+	char op[9];
+	for (int i = 0; i < 9; i++)
+		b[i] = i + 1;
+	cout << "求解结果：";
+	fun(op, 0, 0, b, 1);
+
+
+	cout << "全排列：" << endl;
+	int c[3];
+	for (int i = 0; i < 3; i++)
+	{
+		c[i] = i + 1;
+	}
+	cdfs(c, 3, 0);
+
+	cout << "01背包问题求解" << endl;
+	
+	int op1[5];
+	dfs01(0,0,0,op1);
+	for (int i = 0; i < 5; i++)
+	{
+		if(op1[i])
+		cout << x1[i] << " ";
+	}
 }
 
 void main()
