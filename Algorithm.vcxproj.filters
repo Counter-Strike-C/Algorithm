@@ -32,5 +32,8 @@
     <ClCompile Include="Test1.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="ALG_BTMethod.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

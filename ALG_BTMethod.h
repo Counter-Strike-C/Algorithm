@@ -153,7 +153,7 @@ void loadDfs(int i, int tw, int rw, int op[])
 		if (tw > maxw)
 		{
 			maxw = tw;
-			for (int j = 1; j < n; j++)
+			for (int j = 1; j < n1; j++)
 				x2[j] = op[j];
 		}
 	}
@@ -165,7 +165,7 @@ void loadDfs(int i, int tw, int rw, int op[])
 			loadDfs(i + 1, tw + w[i], rw - w[i], op);
 		}
 
-		if (tw + rw - w1[i] > maxv)
+		if (tw + rw - w1[i] > maxw)    //tw加上剩余集装箱重量大于最大的价值
 		{
 			op[i] = 0;   //不选取第i个节点
 			loadDfs(i + 1, tw, rw-w[i], op);     //减去不选的，因为rw是剩余集装箱重量
@@ -173,3 +173,7 @@ void loadDfs(int i, int tw, int rw, int op[])
 	}
 }
 
+//求解复杂装载问题
+//有一批共n个集装箱要装上两艘载重量分别为c1和c2的轮船，其中集装箱i的重量为wi，且w1+w2+…+wn≤c1+c2。  
+//装载问题要求确定是否有一个合理的装载方案可将这些集装箱装上这两艘轮船。如果有，找出一种装载方案。
+void clDfs(int i, int tw, int rw, int op[]);
