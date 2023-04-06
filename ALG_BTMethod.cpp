@@ -84,27 +84,84 @@ void dfs1(int i, int tw, int rw, int x[])
 }
 
 
-//求解n皇后的问题，使用回溯法非递归方法
 const int num = 5;
 int q[num];
-void Queens(int n)
-{
-	int i = 1;         //i表示当前行,放置第i个皇后
-	q[i] = 0;         //q[i]表示当前列，每个新考虑的皇后初始位置置为0列
-	while (i > 1)
-	{
-		q[i]++;
-		while(q[i]<=n && !)
-	}
-
-}
 
 bool place(int i)   //测试第i行的q[i]列上能否摆放皇后
 {
 	int j = 1;
 	if (i == 1) return true;
-	while (j<i)
+	while (j < i)    //j = 1~i是已经放置了皇后的行
 	{
-		if((q[j]==q[i] || abs(q[j]-q[i])==abs(j-i))))
+		if ((q[j] == q[i] || abs(q[j] - q[i]) == abs(j - i)))
+			//该皇后是否与以前皇后同列，位置（j、q[j])与(i、q[i])是否同对角线
+			return false;
+	}
+	return true;
+}
+
+void disp1(int n)
+{
+	for (int i = 0; i < n; i++)
+		cout << q[i] << endl;
+}
+
+//求解n皇后的问题，使用回溯法非递归方法
+
+void Queens(int n)
+{
+	int i = 1;         //i表示当前行,放置第i个皇后
+	q[i] = 0;         //q[i]表示当前列，每个新考虑的皇后初始位置置为0列
+	while (i >= 1)      //尚未回溯到头，循环
+	{
+		q[i]++;         //原位置向后移动一列
+		while (q[i] <= n && !place(i))  //试探一个位置,如果不能放置则
+			q[i]++;  //向后移动一列
+
+		if (q[i] < n)//为第i个皇后找到了一个合适位置(i,q[i])
+		{
+			if (i == n)  //若放置了所有皇后,输出一个解
+				disp1(n);
+			else        //皇后没有放置完
+			{
+				i++;        //开始下一行的放置
+				q[i] = 0;       //每一个新的皇后初始位置为0列
+			}
+		}
+		else i--;        //若第i个皇后找不到合适的位置，则回溯到上一个皇后
 	}
 }
+
+
+//求解图的m着色问题
+const int n2 = 5;
+int a[5][5];
+int count1 = 0;       //解的数量
+int m = 4;   //颜色的数量
+int k = 8;     //边的数量
+bool Same(int i)        //判断顶点i是否与相邻顶点存在相同的着色
+{
+	for (int j = 1; j <= n; j++)
+		if (a[i][j] == 1 && x[i] == x[j])
+			return false;
+	return true;
+
+}
+
+void mDfs(int i)        //求解图的m着色问题
+{
+	if (i > n)
+		count1++;
+	else
+	{
+		for (int j= 1; j < m; i++)    //m叉树，试探每一种颜色
+		{
+			x[i] = j;      //试探着色j
+			if(Same(i))   //可以着色j
+				mDfs(i + 1);   //下一个顶点着色
+			x[i] = 0;       //不着色j，继续着色下一个颜色（回溯到兄弟节点)
+		}
+	}
+}
+
+//求解任务分配的问题
