@@ -192,11 +192,11 @@ void dfs3(int i)        //为第i个人分配任务
 		{
 			worker[j] = true;
 			x3[j] = 1;
-			cost += c2[m][j];  //人物i分配任务j的花费
+			cost += c2[&m][&j];  //人物i分配任务j的花费
 			dfs3(i + 1);
 			worker[j] = false;    //回溯
 			x3[j] = 0;
-			cost -= c2[m][j];
+			cost -= c2[&m][&j];
 
 		}
 	}
@@ -217,3 +217,72 @@ int bestx[MAX];       //最优解向量
 int laste = 0;        //一个调度方案中最后兼容活动的结束时间,初值为0
 int sum = 0;		//一个调度方案中所有兼容活动个数,初值为0
 int maxsum = 0;
+
+void dfs5(int i)	//搜索活动问题最优解
+{
+	if (i > n)		//到达叶子结点,产生一种调度方案
+	{
+		if (sum > maxsum)
+		{
+			maxsum = sum;
+			for (int k = 1; k <= n; k++)
+				bestx[k] = x[k];
+		}
+	}
+	else
+	{
+		for (int j = i; j <= n; j++)	  	//没有到达叶子结点,考虑i到n的活动
+		{    				//第i层结点选择活动x[j]
+			swap(x[i], x[j]);		//排序树问题递归框架:交换x[i],x[j]
+			int sum1 = sum;		//保存sum，laste以便回溯
+			int laste1 = laste;
+			if (A[x[j]].b >= laste)	//活动x[j]与前面兼容
+			{
+				sum++;			//兼容活动个数增1
+				laste = A[x[j]].e;		//修改本方案的最后兼容时间
+			}
+			dfs5(i + 1);			//排序树问题递归框架:进入下一层
+			swap(x[i], x[j]);		//排序树问题递归框架:交换x[i],x[j]
+			sum = sum1;			//回溯
+			laste = laste1;		//即撤销第i层结点对活动x[j]的选择
+		}
+	}
+}
+
+//6、解决流水线作业调度问题
+int n6 = 4;			//作业数
+int x6[MAX];     //临时解向量
+x6[0] = 0;
+int bestx[MAX];       //最优解向量
+int bestf;      //最优时间
+int a6[MAX] = { 0,5,12,4,8 };	//M1上的执行时间,不用下标0的元素
+int b6[MAX] = { 0,6,2,14,7 };	//M2上的执行时间,不用下标0的元素
+
+int f1;      //m1调度时间
+int f2[MAX];     //m2任务调度时间  （与bestf比较)
+
+void dfs6(int i)
+{
+	if (i > n)
+	{
+		if (f2[n] < bestf)
+		{
+			bestf = f2[n];
+			for (int j = 1; j <= n; j++)
+				bestx[j] = x[j];
+		}
+	}
+	else
+	{
+		for (int j = i; j <= n; j++)  //没有到达叶结点,考虑可能的作业,i节点之后的所有节点
+		{
+			swap(x6[i], x6[j]);
+			f1 += a6[x6[i]];     //选取的就是x[j]
+			f2[i] += max(f1,f2[i-1]) + b6 [x6[i]];  //找到f2完成时间
+			if (f2[i] < bestf)        //剪枝
+				dfs6(i + 1);
+			f1 -= a6[x[i]];    //回溯
+			swap(x6[i], x6[j]);
+		}
+	}
+}

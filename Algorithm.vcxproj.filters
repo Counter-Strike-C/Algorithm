@@ -27,6 +27,9 @@
     <ClInclude Include="ALG_BTMethod.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ALG_BaBMethod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test1.cpp">
@@ -34,6 +37,9 @@
     </ClCompile>
     <ClCompile Include="ALG_BTMethod.cpp">
       <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ALG_BaBMethod.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
