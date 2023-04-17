@@ -5,6 +5,7 @@
 #include<stack>
 #include<algorithm>
 #include<queue>
+#include<map>
 #include<string>
 #define MAXN 100
 #define MAXM 100

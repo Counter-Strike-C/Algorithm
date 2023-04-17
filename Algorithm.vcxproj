@@ -143,12 +143,14 @@
     <ClInclude Include="ALG_BaBMethod.h" />
     <ClInclude Include="ALG_BTMethod.h" />
     <ClInclude Include="ALG_DCMethod.h" />
+    <ClInclude Include="ALG_Greedy.h" />
     <ClInclude Include="ALG_Recursion.h" />
     <ClInclude Include="Common.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ALG_BaBMethod.cpp" />
     <ClCompile Include="ALG_BTMethod.cpp" />
+    <ClCompile Include="ALG_Greedy.cpp" />
     <ClCompile Include="Test1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
