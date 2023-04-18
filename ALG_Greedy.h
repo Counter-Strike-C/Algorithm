@@ -252,3 +252,95 @@ void CreateHTree()       //构造哈夫曼编码
 		qu.push(e);
 	}
 }
+
+void CreateHCode()
+{
+	string code;
+	code.reserve(MAXN);
+
+	for (int i = 0; i < n; i++)      //构造叶子节点i的哈夫曼编码
+	{
+		code = "";
+		int curno = i;//遍历每一个节点并输出编码
+		int f = ht[curno].parent;
+		while (f != -1)
+		{
+			if (ht[f].lchild == curno)  //curno为双亲f的左孩子
+				code = '0' + code;
+			else
+				code = '1' + code;      //curno为双亲f的右孩子
+			curno = f;
+			f = ht[curno].parent;
+		}
+		htcode[ht[i].data] = code;    //保存相应字符的哈夫曼编码
+	}
+}
+
+struct Action_6
+{
+	int d;			//完成期限
+	int p;			//效益
+	bool operator< (const Action_6 t) const
+	{
+		return p > t.p;		//按效益递减排序
+	}
+};
+Action_6 A6[] = { {0},{1,4},{3,5},{0,6},{5,7},{3,8},{5,9},{6,10},{8,11},{8,12},{2,13},{12,15} };	//下标0不用
+Action_6 flag[MAXN];		//求解结果表示
+
+void solve()
+{
+	memset(flag, 0, sizeof(flag));
+	sort(A6, A6 + 1);
+	int sum = 0;     //累计做过作业时间
+	for (int i = 1; i <= sizeof(A6); i++)
+	{
+		if (A6[i].d > sum)
+		{
+			flag[i] = true;
+			sum++;
+		}
+	}
+}
+
+/*
+有n个作业，a1,a2，…，an，
+作业aj的处理时间为tj，产生的效益为pj，最后完成期限为dj，作业一旦被调度则不能中断，
+如果作业aj在dj前完成，则获得效益pj，否则无效益。给出最大化效益的作业调度算法。*/
+//采用贪心算法
+int t[] = { 0,1,4,1 };		//下标0不用
+int d[] = { 0,5,4,5 };
+int p[] = { 0,2,8,6 };
+struct Action_7
+{
+	int t;			//处理时间
+	int d;			//完成期限
+	int p;			//效益
+	bool operator< (const Action_6 t) const
+	{
+		return p > t.p;		//按效益递减排序
+	}
+};
+Action_7 A7[51];	//下标0不用
+int bestp = 0;			//最大的效益
+
+void solve()
+{
+	for (int i = 1; i <= n; i++)	//产生A数组元素
+	{
+		A7[i].t = t[i];
+		A7[i].d = d[i];
+		A7[i].p = p[i];
+	}
+
+	sort(A7, A7 + 1);
+	int sum = 0;
+	for (int i = 1; i < sizeof(A7); i++)
+	{
+		if (A7[i].d > sum)
+		{
+			bestp += A7[i].p;
+			sum += A7[i].t;
+		}
+	}
+}

@@ -1,10 +1,44 @@
-﻿  Test1.cpp
-D:\C++Repos\Algorithm\Common.h(19,1): warning C4005: 'OVERFLOW': macro redefinition
+﻿  ALG_BaBMethod.cpp
+D:\C++Repos\Algorithm\Common.h(20,1): warning C4005: 'OVERFLOW': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_math.h(967): message : see previous definition of 'OVERFLOW'
+D:\C++Repos\Algorithm\ALG_BaBMethod.h(167,5): error C2040: 'ALG_BaBMethod::v': 'int' differs in levels of indirection from 'int [4]'
+  ALG_BTMethod.cpp
+D:\C++Repos\Algorithm\Common.h(20,1): warning C4005: 'OVERFLOW': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_math.h(967): message : see previous definition of 'OVERFLOW'
+D:\C++Repos\Algorithm\ALG_BTMethod.h(119,24): error C2065: 'n': undeclared identifier
+D:\C++Repos\Algorithm\ALG_BTMethod.cpp(2,1): warning C4005: 'MAXN': macro redefinition
+D:\C++Repos\Algorithm\Common.h(10): message : see previous definition of 'MAXN'
+D:\C++Repos\Algorithm\ALG_BTMethod.cpp(3,5): error C2374: 'w': redefinition; multiple initialization
+D:\C++Repos\Algorithm\ALG_BTMethod.h(107): message : see declaration of 'w'
+D:\C++Repos\Algorithm\ALG_BTMethod.cpp(6,5): error C2374: 'maxw': redefinition; multiple initialization
+D:\C++Repos\Algorithm\ALG_BTMethod.h(145): message : see declaration of 'maxw'
+D:\C++Repos\Algorithm\ALG_BTMethod.cpp(60,5): error C2374: 'W1': redefinition; multiple initialization
+D:\C++Repos\Algorithm\ALG_BTMethod.h(143): message : see declaration of 'W1'
+D:\C++Repos\Algorithm\ALG_BTMethod.cpp(137,11): error C2373: 'n2': redefinition; different type modifiers
+D:\C++Repos\Algorithm\ALG_BTMethod.h(105): message : see declaration of 'n2'
+D:\C++Repos\Algorithm\ALG_BTMethod.cpp(170,6): error C2040: 'c2': 'int [20][20]' differs in levels of indirection from 'int'
+D:\C++Repos\Algorithm\ALG_BTMethod.cpp(222,5): error C2369: 'bestx': redefinition; different subscripts
+D:\C++Repos\Algorithm\ALG_BTMethod.cpp(173): message : see declaration of 'bestx'
+D:\C++Repos\Algorithm\ALG_BTMethod.cpp(278,5): error C2369: 'bestx': redefinition; different subscripts
+D:\C++Repos\Algorithm\ALG_BTMethod.cpp(173): message : see declaration of 'bestx'
+  ALG_Greedy.cpp
+D:\C++Repos\Algorithm\Common.h(20,1): warning C4005: 'OVERFLOW': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_math.h(967): message : see previous definition of 'OVERFLOW'
+D:\C++Repos\Algorithm\ALG_Greedy.h(54,5): error C2371: 'A': redefinition; different basic types
+D:\C++Repos\Algorithm\ALG_Greedy.h(18): message : see declaration of 'A'
+D:\C++Repos\Algorithm\ALG_Greedy.h(148,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\C++Repos\Algorithm\ALG_Greedy.h(294,10): error C2371: 'flag': redefinition; different basic types
+D:\C++Repos\Algorithm\ALG_Greedy.h(21): message : see declaration of 'flag'
+D:\C++Repos\Algorithm\ALG_Greedy.h(297,6): error C2084: function 'void solve(void)' already has a body
+D:\C++Repos\Algorithm\ALG_Greedy.h(24): message : see previous definition of 'solve'
+  Test1.cpp
+D:\C++Repos\Algorithm\Common.h(20,1): warning C4005: 'OVERFLOW': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_math.h(967): message : see previous definition of 'OVERFLOW'
 D:\C++Repos\Algorithm\ALG_DCMethod.h(239,1): warning C4005: 'MAX': macro redefinition
 D:\C++Repos\Algorithm\ALG_DCMethod.h(2): message : see previous definition of 'MAX'
 D:\C++Repos\Algorithm\ALG_BTMethod.h(2,1): warning C4005: 'MAX': macro redefinition
 D:\C++Repos\Algorithm\ALG_DCMethod.h(239): message : see previous definition of 'MAX'
+D:\C++Repos\Algorithm\Test1.cpp(84,17): error C2660: 'dfs01': function does not take 4 arguments
+D:\C++Repos\Algorithm\ALG_BTMethod.h(112,6): message : see declaration of 'dfs01'
 D:\C++Repos\Algorithm\Test1.cpp(93,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-D:\C++Repos\Algorithm\ALG_DCMethod.h(130): warning C4715: 'midium': not all control paths return a value
-  Algorithm.vcxproj -> D:\C++Repos\Algorithm\x64\Debug\Algorithm.exe
+  Generating Code...
