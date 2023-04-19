@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.h"
+#define N 4
 //贪心算法设计
 
 //求解活动安排问题
@@ -343,4 +344,51 @@ void solve()
 			sum += A7[i].t;
 		}
 	}
+}
+
+//贪心法求解流水作业调度问题
+int a[N] = { 5,12,4,8 };		//对应M1的时间
+int b[N] = { 6,2,14,7 };		//对应M2的时间
+
+struct NodeType_8
+{
+	int no;			//作业序号
+	bool group;			//1代表第一组N1,0代表第二组N2
+	int time;			//a,b的最小时间
+	bool operator<(const NodeType_8& s) const
+	{
+		return time < s.time;	//用于按time递增排序
+	}
+};
+int best[N];			//最优调度序列
+
+//求解问题
+int solve_8()
+{
+	n = 4;
+	int i, j, k;
+	NodeType_8 c[N];
+	for (int i = 0; i < n; i++)
+	{
+		c[i].no = i;
+		c[i].group = (a[i] <= b[i]);
+		c[i].time = a[i] <= b[i] ? a[i] : b[i];
+	}
+	sort(c, c + n);       //c元素按照time递增排序
+	j = 0; k = n - 1;
+	for (i = 0; i < n; i++)  //扫描c所有元素,产生最优调度方案
+	{
+		if (c[i].group == 1)
+			best[j++] = c[i].no;//第1组,按time递增排列放在best的前面部分
+		else
+			best[k--] = c[i].no;//第0组,按time递减排列放到best的后面部分
+	}
+	int f1 = 0;   //累计M1上的执行时间
+	int f2 = 0;    //最优调度下的消耗总时间
+	for (i = 0; i < n; i++)
+	{
+		f1 += a[best[i]];
+		f2 = max(f2, f1) + b[best[i]];
+	}
+	return f2;
 }

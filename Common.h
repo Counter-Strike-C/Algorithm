@@ -8,6 +8,7 @@
 #include<map>
 #include<string>
 #define MAXN 100
+#define MAX 100
 #define MAXM 100
 #define INF 32727
 #define MAXSIZE 100
