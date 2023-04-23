@@ -128,3 +128,46 @@ void disppath(int k)  //输出最小和路径
 		cout << *it;    //反向输出构成正向路径
 	cout << endl;
 }
+
+//求解最长公共子序列问题
+int m;
+string a, b;				//求解结果表示
+int dp4[MAX][MAX];			//动态规划数组
+vector<char> subs;       //存放lcs
+
+void LCSLength()        //求dp
+{
+	int i, j;
+	for (i = 0; i <= m; i++)         //边界条件
+		dp4[i][0] = 0;
+	for (j = 0; j <= n; j++)       //边界条件
+		dp4[0][j] = 0;
+	for(int i=1;i<=m;i++)
+		for (int  j = 1; i <=n; j++)
+		{
+			if (a[i - 1] == b[j - 1])
+				dp4[i][j] = dp4[i - 1][j - 1] + 1;
+			else
+				dp4[i][j] = max(dp4[i - 1][j], dp4[i][j - 1]);
+		}
+}
+
+void Buildsubs()
+{
+	int k = dp4[m][n];      //k为最长公共子序列长度
+	int i = m;
+	int j = n;
+
+	while (k>0)          //在subs中放入最长公共子序列
+	{
+		if (dp4[i][j] == dp4[i - 1][j])
+			i--;
+		else if (dp4[i][j] == dp4[i][j - 1])
+			j--;
+		else
+		{
+			subs.push_back(a[i - 1]);  //将子序列入栈
+			i--; j--; j--;
+		}
+	}
+}
