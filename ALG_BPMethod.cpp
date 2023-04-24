@@ -171,3 +171,155 @@ void Buildsubs()
 		}
 	}
 }
+
+//求解最长递增子序列问题
+int a5[]= { 2,1,5,3,6,4,8,9,7 };
+int n5 = sizeof(a5) / sizeof(a5[0]);
+//求解结果表示
+int ans5 = 0;
+int dp5[MAX];
+
+void solve(int a[], int n)
+{
+	int i, j;
+	for (int i = 0; i < n; i++)
+	{
+		dp5[i] = 1;
+		for (int j = 0; j < i; j++)
+		{
+			if (a[i] > a[j])
+				dp5[i] = max(dp5[i], dp5[j] + 1);
+		}
+	}
+	ans5 = dp5[0];
+	for (int i = 0; i < n5; i++)
+		ans5 = max(ans5, dp5[i]);
+}
+
+
+//求解编辑距离问题
+/*设A和B是两个字符串。现在要用最少的字符操作次数，将字符串A转换为字符串B。这里所说的字符操作共有3种：
+    （1）删除一个字符。
+    （2）插入一个字符。
+    （3）将一个字符替换另一个字符。
+*/
+//问题表示
+string a6 = "sfdqxbw";
+string b6 = "gfdgw";
+//求解结果表示
+int dp6[MAX][MAX];
+
+void solve6()
+{
+	int i, j;
+	for (i = 1; i <= a6.length(); i++)
+		dp6[i][0] = i;
+	for (j = 1; j <= a6.length(); j++)
+		dp6[0][j];	
+
+	for(i=1;i<= a6.length();i++)
+		for (j = 1; j <= a6.length(); j++)
+		{
+			if (a[i - 1] == b[i - 1])
+				dp6[i][j] = dp6[i - 1][j - 1] + 1;
+			else
+				dp6[i][j] = min(min(dp6[i - 1][j - 1], dp6[i][j - 1]), dp6[i - 1][j])+1	;
+		}
+}
+
+
+//问题表示
+int n7 = 5, W7 = 10;
+int w7[MAXN] = { 0,2,2,6,5,4 };	//下标0不用
+int v7[MAXN] = { 0,6,3,5,4,6 };	//下标0不用
+
+//求解结果表示
+int dp7[MAXN][MAXN];        //动态规划数组,存放总价值
+int x[MAXN];        //存放最优解
+int maxv;           //存放最优解的总价值
+
+void knap7()
+{
+	int i, r;
+	for (i = 0; i <= n7; i++)
+		dp7[i][0] = 0;
+	for (r = 0; r <= W7; r++)
+		dp7[0][r] = 0;
+
+	for (i = 1; i <= n7; i++)
+	{
+		for (r = 1; r <= W7; r++)
+			if (r < w7[i])       //装不下此物品时
+				dp7[i][r] = dp7[i - 1][r]; //不装入此物品
+			else
+				dp7[i][r] = max(dp7[i - 1][r], dp7[i - 1][r - w7[i]] + v7[i]);  //判断不装入和装入两种情况的总价值
+	}
+}
+
+//回推求最优解
+void buildx()
+{
+	int i = n7, r = W7;
+	maxv = 0;
+	while (i	>=0)
+	{
+		if (dp7[i][r] != dp7[i - 1][r])    //若物品i已经选取
+		{
+			x[i] = 1;         //选取物品i
+			maxv += v7[i];         //累计物品总价值
+			r = r - w7[i];
+		}
+		else
+		{
+			x[i] = 0;
+		}
+	}
+}
+
+//问题表示
+int n8, W8;
+int w8[MAXN], v8[MAXN];
+//求解结果表示
+int dp8[MAXN + 1][MAXW + 1], fk8[MAXN + 1][MAXW + 1];
+//dp[i][j]表示从前i个物品中选出重量不超过j的物品的最大总价值。
+//其中fk[i][j]存放dp[i][j]得到最大值时物品i挑选的件数。
+int solve8()        //求解多重背包问题
+{
+	int i, j, k;
+	for (i = 1; i <= n8; i++)     //物品号
+		for(j=0;j<=W8;j++)    
+			for (k = 0; k * w7[i] <= j; k++)     //重量不超过j
+				if (dp8[i][j] < dp8[i - 1][j - k * w8[i]] + k * v7[i])
+				{
+					dp8[i][j] = dp8[i - 1][j - k * w8[i]] + k * v7[i];
+					fk8[i][j] = k;     //物品i选取k件
+				}
+	return dp8[n8][W8];
+}
+
+//回推求最优解
+void TraceBack()
+{
+	int i = n8, j = W8;
+	while (i>=1)
+	{
+		printf("物品%d共%d件 ", i, fk8[i][j]);
+		j -= fk8[i][j] * w8[i];	//剩余重量
+		i--;
+
+	}
+}
+
+int solve1()			//动态规划法求完全背包问题优化
+{
+	int i, k, j;
+	for (i = 1; i <= n; i++)
+		for (j = 0; j <= W8; j++)
+		{
+			if (j < w8[i])
+				dp8[i][j] = dp8[i - 1][j];
+			else
+				dp8[i][j] = max(dp8[i - 1][j], dp8[i][j - w8[i]] + v8[i]);
+		}
+	return dp8[n][W8];		//返回总价值
+}
