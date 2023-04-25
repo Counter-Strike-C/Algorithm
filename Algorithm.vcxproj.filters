@@ -36,6 +36,9 @@
     <ClInclude Include="ALG_BPMethod.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ALG_MapMethod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test1.cpp">
@@ -51,6 +54,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ALG_BPMethod.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ALG_MapMethod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

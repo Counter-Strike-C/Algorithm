@@ -323,3 +323,100 @@ int solve1()			//动态规划法求完全背包问题优化
 		}
 	return dp8[n][W8];		//返回总价值
 }
+
+//求解资源分配问题
+//问题表示
+int m9 = 3, n9 = 5;				//商店数为m,总人数为n
+int v9[MAXM][MAXN] = { {0,0,0,0,0,0},{0,3,7,9,12,13},
+	{0,5,10,11,11,11},{0,4,6,11,12,12} }; //不计v[0]行
+//求解结果表示
+int dp9[MAXM][MAXN];
+int pnum9[MAXM][MAXN];
+
+//求解最优方案
+void Plan()
+{
+	int maxf,maxj;
+	for (int j = 0; j <= n; j++)
+		dp9[m9 + 1][j] = 0;     //边界条件
+	for(int i=m9;i>=1;i--)
+		for (int s = 1; s <= n9; s++)
+		{
+			maxf = 0;
+			maxj = 0;
+			for (int j = 0; j < s; j++)
+			{
+				if ((v9[i][j] + dp9[i + 1][s - j]) >= maxf)  //利用循环求出最大利益
+				{
+					maxf = v9[i][j] + dp9[i + 1][s - j];
+					maxj = j;
+				}
+			}
+			dp9[i][s] = maxf;
+			pnum9[i][s] = maxj;
+		}
+}
+
+#pragma region 求解会议安排问题
+struct NodeType_10
+{
+	int b;			//开始时间
+	int e;			//结束时间
+	int length;			//订单的执行时间
+	bool operator < (const NodeType_10 t) const
+	{				//用于排序的运算符重载函数
+		return e < t.e;		//按结束时间递增排序
+	}
+
+};
+int n10 = 11;			//订单个数
+NodeType_10 A10[MAX] = { {1,4},{3,5},{0,6},{5,7},{3,8},{5,9},{6,10},{8,11},
+   {8,12},{2,13},{12,15} };	//存放订单
+//求解结果表示
+int dp10[MAX];			//动态规划数组
+int pre10[MAX];			//pre[i]存放前驱订单编号
+
+void solve10()
+{
+	memset(dp10, 0, sizeof(dp10));   //dp数组初始化
+	stable_sort(A10, A10 + n);         //稳定排序算法
+	dp10[0] = A10[0].length;
+	pre10[0] = 1;
+	for (int i = 1; i < n; i++)
+	{
+		int low = 0;
+		int high = i - 1;
+		while (low<high)   //在A[0..i-1]中折半查找结束时间早于
+				//A[i].b的最晚订单A[low-1]
+		{
+			int mid = (low + high) / 2;
+			if (A10[mid].e <= A10[i].b)
+				low = mid + 1;
+			else
+				high = mid - 1;
+		}
+
+		if (low == 0)
+		{
+			if (dp10[i] >= A10[i].length)
+			{
+				dp10[i] = dp10[i - 1];
+				pre10[i] = -2;
+			}
+		}
+		else
+		{
+			if (dp10[i - 1] >= dp10[low - 1] + A10[i].length)
+			{
+				dp10[i] = dp10[i - 1];
+				pre10[i] = -2;			//不选择订单i
+			}
+			else
+			{
+				dp10[i] = dp10[low - 1] + A10[i].length;
+				pre10[i] = low - 1;		//选中订单i
+
+		}
+	}
+}
+#pragma endregion
