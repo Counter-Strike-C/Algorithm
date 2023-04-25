@@ -25,3 +25,5 @@ int ans = 0;
 int dp3[MAXN][MAXN];
 int pre[MAXN][MAXN];
 int Search();   //ËÑË÷
+
+void Plan();
