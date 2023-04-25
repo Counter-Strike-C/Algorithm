@@ -128,3 +128,8 @@ void disppath(int k)  //输出最小和路径
 		cout << *it;    //反向输出构成正向路径
 	cout << endl;
 }
+
+//求解最长公共子序列问题
+int m;
+string a, b;
+int dp4[MAX][MAX];
