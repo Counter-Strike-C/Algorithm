@@ -131,6 +131,10 @@ void disppath(int k)  //输出最小和路径
 
 //求解最长公共子序列问题
 int m;
+<<<<<<< HEAD
+string a, b;
+int dp4[MAX][MAX];
+=======
 string a, b;				//求解结果表示
 int dp4[MAX][MAX];			//动态规划数组
 vector<char> subs;       //存放lcs
@@ -420,3 +424,4 @@ void solve10()
 	}
 }
 #pragma endregion
+>>>>>>> a1439f0c323a6e3d6e30156fd9b8ca39a873780e
