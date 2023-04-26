@@ -155,6 +155,7 @@
     <ClCompile Include="ALG_BTMethod.cpp" />
     <ClCompile Include="ALG_Greedy.cpp" />
     <ClCompile Include="ALG_MapMethod.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Test1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
