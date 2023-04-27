@@ -131,10 +131,7 @@ void disppath(int k)  //输出最小和路径
 
 //求解最长公共子序列问题
 int m;
-<<<<<<< HEAD
-string a, b;
-int dp4[MAX][MAX];
-=======
+
 string a, b;				//求解结果表示
 int dp4[MAX][MAX];			//动态规划数组
 vector<char> subs;       //存放lcs
@@ -224,7 +221,7 @@ void solve6()
 	for(i=1;i<= a6.length();i++)
 		for (j = 1; j <= a6.length(); j++)
 		{
-			if (a[i - 1] == b[i - 1])
+			if (a6[i - 1] == b6[i - 1])
 				dp6[i][j] = dp6[i - 1][j - 1] + 1;
 			else
 				dp6[i][j] = min(min(dp6[i - 1][j - 1], dp6[i][j - 1]), dp6[i - 1][j])+1	;
@@ -424,4 +421,3 @@ void solve10()
 	}
 }
 #pragma endregion
->>>>>>> a1439f0c323a6e3d6e30156fd9b8ca39a873780e

@@ -112,19 +112,29 @@ int bestf = INF;			//存放最优调度时间
 //int bestx[MAX];		//存放当前作业最佳调度
 //int total = 1;			//结点个数累计
 
+
+int n = 4;			//作业数
+int a[MAX] = { 0,5,12,4,8 };	//M1上的执行时间,不用下标0的元素
+int b[MAX] = { 0,6,2,14,7 };	//M2上的执行时间,不用下标0的元素  在i=0时，b[0]用于判断f2
+//求解结果表示
+//int bestf = INF;			//存放最优调度时间
+int bestx[MAX];		//存放当前作业最佳调度
+int total = 1;			//结点个数累计
+
 //求解流水线作业调度问题
 void debug_2()
 {
 	n = 4;
 	free(bestx);
 	total = 1;
+	bestf = INF;
 }
 
 struct NodeType_2		//队列结点类型
 {
 	int no;			//结点编号
 	int x[MAX];			//x[i]表示第i步分配作业编号
-	int y[MAX];			//y[i]=1表示编号为i的作业已经分配
+	int y[MAX];			//y[i]=1表示编号为i的作业已经分配  //
 	int i;			//步骤编号
 	int f1;			//已经分配作业M1的执行时间
 	int f2;			//已经分配作业M2的执行时间
@@ -138,5 +148,64 @@ struct NodeType_2		//队列结点类型
 //边界函数
 void bound_2(NodeType_2 &e)
 {
+	int sum = 0;
+	for (int i = 1; i <= n; i++)
+		if (e.y[i] == 0) sum += b[i];      //如果没有分配，则求剩余b时间总和
+	e.lb = sum;     //求出边界
+}
 
+//求解
+void bfs_2()
+{
+	NodeType_2 e, e1;
+	priority_queue<NodeType_2> qu;
+	e.i = 0;
+	e.no = total++;
+	e.f1 = 0;
+	e.f2 = 0;
+	bound_2(e);
+	qu.push(e);   //根节点
+	while (!qu.empty())
+	{
+		e = qu.top();
+		qu.pop();
+		//if (e.i == n)    //到叶子节点了
+		//{
+		//	if (e.f2 < bestf)
+		//	{
+		//		bestf = e.f2;
+		//		for (int i = 0; i <= n; i++)
+		//			bestx[i] = e.x[i];
+		//	}
+		//}
+		e1.i = e.i + 1;
+		for (int j = 1; j <= n; j++)
+		{
+			if (e.y[j] == 1)continue;
+			for (int i1 = 1; i1 <= n; i1++)
+				e1.x[i1] = e.x[i1];
+			for (int i2 = 1; i2 <= n; i2++)
+				e1.y[i2] = e.y[i2];
+			e1.x[e1.i] = j;     //为第i步分配作业j
+			e1.y[j] = 1;    //j已分配
+			e1.f1 = e.f1 + a[j];      //求f1      f1=f1+a[j]
+			e1.f2 = max(e1.f1, e.f2) + b[j];   //求f2        f[i+1]=max(f2[i],f1)+b[j]
+			
+			bound_2(e1);
+			if (e1.i == n)  //如果到达叶子节点
+			{
+				if (e1.f2 < bestf)   //比较求最优解
+				{
+					bestf = e1.f2;
+					for (int i = 0; i <= n; i++)
+							bestx[i] = e.x[i];
+				}
+			}
+			else if (e1.lb < bestf)      //减去不会得到最优解的解
+			{
+				e1.no = total++;    //节点编号+1
+				qu.push(e1);
+			}
+		} 
+	}
 }
